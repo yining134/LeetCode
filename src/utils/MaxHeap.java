@@ -14,6 +14,7 @@ public class MaxHeap <E extends Comparable<E>>{
         for (int i = 0; i < arr.length; i++) {
             data.add(arr[i]);
         }
+        //下滤法，找到最后一个节点的父节点，将其视为一个堆，从该节点开始向前,不断加入节点
         for (int i = parent(arr.length - 1); i >= 0; i--) {
             siftDown(i);
         }
@@ -57,6 +58,7 @@ public class MaxHeap <E extends Comparable<E>>{
         E max = null;
         int maxChild;
         while (leftChild(k) < data.size()) {
+            //考虑只有左孩子的情况，避免溢出
             if (leftChild(k) + 1 >= data.size()) {
                 max = data.get(leftChild(k));
                 maxChild = leftChild(k);
@@ -73,7 +75,7 @@ public class MaxHeap <E extends Comparable<E>>{
             }
 
             if (max.compareTo(temp) > 0) {
-                data.set(maxChild, data.get(k));
+                data.set(k, max);
                 k = maxChild;
             } else break;
         }
@@ -89,14 +91,19 @@ public class MaxHeap <E extends Comparable<E>>{
         E ret = data.get(0);
         swap(0, data.size() - 1);
         data.remove(data.size() - 1);
-        siftDown(0);
+        if (data.size() != 0) siftDown(0);
         return ret;
     }
 
+    private boolean isEmpty() {
+        return data.isEmpty();
+    }
+
     public static void main(String[] args) {
-        MaxHeap<Integer> maxHeap = new MaxHeap<>(new Integer[]{1, 2, 3, 5});
+        MaxHeap<Integer> maxHeap = new MaxHeap<>(new Integer[]{1, 2, 3, 5, 4, 7});
         maxHeap.add(6);
-        System.out.printf(maxHeap.pop() + "\t");
-        System.out.printf(maxHeap.pop() + "\t");
+        while(!maxHeap.isEmpty()) {
+            System.out.printf(maxHeap.pop() + "\t");
+        }
     }
 }
