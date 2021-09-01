@@ -63,7 +63,7 @@ public class TreeNode {
                 System.out.print(root.val + " ");
                 stack.push(root);
                 root = root.left;
-            }
+           }
             if (!stack.empty()) {
                 root = stack.pop();
                 root = root.right;
@@ -179,7 +179,7 @@ public class TreeNode {
     }
 
     public static void main(String[] args) {
-        Integer[] nums = {1, 2, 3, 4, 5 , 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+        Integer[] nums = {1, 2, 3, 4, 5 , 6, 7, 8, 9, 10, 11};
         TreeNode root = TreeNode.createTree(nums);
 
         TreeNode.printTree(root);
