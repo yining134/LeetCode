@@ -26,7 +26,11 @@ public class TreeNode {
         queue.add(root);
         for (int i = 0; !queue.isEmpty() && i < n; i++) {
             TreeNode node = queue.poll();
-            if (node == null) continue;
+            if (node == null) {
+                queue.add(null);
+                queue.add(null);
+                continue;
+            }
             int left_num = i * 2 + 1;
             int right_num = i * 2 + 2;
             if (left_num < n && nums[left_num] != null) {
@@ -179,7 +183,7 @@ public class TreeNode {
     }
 
     public static void main(String[] args) {
-        Integer[] nums = {1, 2, 3, 4, 5 , 6, 7, 8, 9, 10, 11};
+        Integer[] nums = {1, 2, 3, 4, null , 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25};
         TreeNode root = TreeNode.createTree(nums);
 
         TreeNode.printTree(root);
